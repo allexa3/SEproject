@@ -1,2 +1,2 @@
 # SEproject
-This is a project for the subject of Software Engineering. It uses C#, ASP.NET and ...
+This is a project for the subject of Software Engineering. It uses C#, ASP.NET and WCF.
