@@ -1,31 +1,21 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using HelloWorldMVC.Models;
+using HelloWorldMVC.Data;
 
-namespace HelloWorldMVC.Controllers;
-
-public class HomeController : Controller
+namespace HelloWorldMVC.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly AppDbContext _context;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public HomeController(AppDbContext context)
+        {
+            _context = context;
+        }
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        public IActionResult Index()
+        {
+            var message = _context.Messages.FirstOrDefault();
+            return View(model: message?.Text ?? "No message found");
+        }
     }
 }

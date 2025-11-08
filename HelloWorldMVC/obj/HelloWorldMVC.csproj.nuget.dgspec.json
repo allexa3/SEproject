@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
+    "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
+    "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "projectUniqueName": "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
         "projectName": "HelloWorldMVC",
-        "projectPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
-        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\obj\\",
+        "projectPath": "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_project\\SEproject\\HelloWorldMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +46,16 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
