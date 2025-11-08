@@ -616,23 +616,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Mara\\.nuget\\packages\\": {},
+    "C:\\Users\\costi\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+      "projectUniqueName": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
       "projectName": "HelloWorldMVC",
-      "projectPath": "D:\\SE_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
-      "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-      "outputPath": "D:\\SE_project\\SEproject\\HelloWorldMVC\\obj\\",
+      "projectPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+      "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
       ],
       "originalTargetFrameworks": [
