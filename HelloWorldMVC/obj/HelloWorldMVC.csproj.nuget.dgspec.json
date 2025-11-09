@@ -1,34 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
+    "/Users/catalinborzei/Documents/GitHub/SEproject/HelloWorldMVC/HelloWorldMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
+    "/Users/catalinborzei/Documents/GitHub/SEproject/HelloWorldMVC/HelloWorldMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "projectUniqueName": "/Users/catalinborzei/Documents/GitHub/SEproject/HelloWorldMVC/HelloWorldMVC.csproj",
         "projectName": "HelloWorldMVC",
-        "projectPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
-        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\costi\\Desktop\\SEproject\\HelloWorldMVC\\obj\\",
+        "projectPath": "/Users/catalinborzei/Documents/GitHub/SEproject/HelloWorldMVC/HelloWorldMVC.csproj",
+        "packagesPath": "/Users/catalinborzei/.nuget/packages/",
+        "outputPath": "/Users/catalinborzei/Documents/GitHub/SEproject/HelloWorldMVC/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+          "/Users/catalinborzei/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -41,17 +37,24 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.10, )"
             },
-            "Microsoft.EntityFrameworkCore.InMemory": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[9.0.10, )"
             }
@@ -75,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
