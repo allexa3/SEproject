@@ -1,89 +1,197 @@
 using System;
+using System.Collections.Generic;
 using System.ServiceModel;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using HelloWorldMVC.Data;
+using HelloWorldMVC.Models;
+using HelloWorldMVC.Services.Options;
 using ImagePlatform.Wcf.Contracts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace HelloWorldMVC.Services;
 
+/// <summary>
+/// Coordinator background dispatcher:
+/// - reads queued JobIds from an in-memory channel
+/// - loads Job from DB
+/// - calls worker via WCF
+/// - updates Job status in DB
+/// </summary>
 public sealed class ImageJobDispatcher : BackgroundService
 {
-    private readonly ChannelReader<ImageJob> _reader;
-    private readonly InMemoryJobStore _store;
+    private readonly ChannelReader<Guid> _reader;
+    private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IOptions<WorkerOptions> _workerOptions;
+    private readonly IOptions<HelloWorldMVC.Services.Options.StorageOptions> _storageOptions;
     private readonly ILogger<ImageJobDispatcher> _logger;
 
-    // For now, worker endpoint is fixed to localhost.
-    private static readonly EndpointAddress WorkerEndpoint = new("http://localhost:7070/WorkerService.svc");
-
-    public ImageJobDispatcher(Channel<ImageJob> channel, InMemoryJobStore store, ILogger<ImageJobDispatcher> logger)
+    public ImageJobDispatcher(
+        Channel<Guid> channel,
+        IServiceScopeFactory scopeFactory,
+        IOptions<WorkerOptions> workerOptions,
+        IOptions<HelloWorldMVC.Services.Options.StorageOptions> storageOptions,
+        ILogger<ImageJobDispatcher> logger)
     {
         _reader = channel.Reader;
-        _store = store;
+        _scopeFactory = scopeFactory;
+        _workerOptions = workerOptions;
+        _storageOptions = storageOptions;
         _logger = logger;
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        // One ChannelFactory for the lifetime of the process.
+        var endpoint = new EndpointAddress(_workerOptions.Value.Endpoint);
+
         var binding = new BasicHttpBinding
         {
-            MaxReceivedMessageSize = 10 * 1024 * 1024 // 10MB (match upload limit)
+            MaxReceivedMessageSize = _storageOptions.Value.MaxUploadBytes
         };
 
-        var factory = new ChannelFactory<IWorkerWcfService>(binding, WorkerEndpoint);
+        var timeout = TimeSpan.FromSeconds(Math.Max(1, _workerOptions.Value.TimeoutSeconds));
+        binding.OpenTimeout = timeout;
+        binding.CloseTimeout = timeout;
+        binding.SendTimeout = timeout;
+        binding.ReceiveTimeout = timeout;
+
+        var factory = new ChannelFactory<IWorkerWcfService>(binding, endpoint);
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            ImageJob job;
+            Guid jobId;
             try
             {
-                job = await _reader.ReadAsync(stoppingToken);
+                jobId = await _reader.ReadAsync(stoppingToken);
             }
             catch (OperationCanceledException)
             {
                 break;
             }
 
-            _store.MarkProcessing(job.JobId);
+            await using var scope = _scopeFactory.CreateAsyncScope();
+            var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
 
-            try
+            var job = await db.Jobs.FirstOrDefaultAsync(j => j.JobId == jobId, stoppingToken);
+            if (job == null)
             {
-                var client = factory.CreateChannel();
-                var req = new ImageJobRequest
-                {
-                    JobId = Guid.Parse(job.JobId),
-                    SourceUri = job.SourcePath,
-                    DestinationUri = job.DestinationPath
-                };
+                _logger.LogWarning("Job {JobId} not found in DB.", jobId);
+                continue;
+            }
 
-                var res = await client.ProcessAsync(req);
+            job.Status = JobStatus.Processing;
+            job.StartedAt = DateTimeOffset.UtcNow;
+            await db.SaveChangesAsync(stoppingToken);
 
-                if (res.Status == ImageJobStatus.Completed)
-                {
-                    _store.MarkCompleted(job.JobId, job.OutputUrl);
-                }
-                else
-                {
-                    _store.MarkFailed(job.JobId, res.ErrorMessage ?? "Worker failed.");
-                }
+            var operations = ParseOperations(job.OperationsJson);
 
+            var req = new ImageJobRequest
+            {
+                JobId = job.JobId,
+                SourceUri = job.SourceUri,
+                DestinationUri = job.DestinationUri,
+                Operations = operations
+            };
+
+            var attempts = Math.Max(1, _workerOptions.Value.RetryCount);
+            Exception? lastError = null;
+
+            for (var attempt = 1; attempt <= attempts; attempt++)
+            {
                 try
                 {
-                    ((ICommunicationObject)client).Close();
+                    var client = factory.CreateChannel();
+                    var res = await client.ProcessAsync(req);
+
+                    try
+                    {
+                        ((ICommunicationObject)client).Close();
+                    }
+                    catch
+                    {
+                        ((ICommunicationObject)client).Abort();
+                    }
+
+                    if (res.Status == ImageJobStatus.Completed)
+                    {
+                        job.Status = JobStatus.Completed;
+                        job.FinishedAt = DateTimeOffset.UtcNow;
+                        job.Error = null;
+                        await db.SaveChangesAsync(stoppingToken);
+                        lastError = null;
+                        break;
+                    }
+
+                    job.Status = JobStatus.Failed;
+                    job.Error = res.ErrorMessage ?? "Worker failed.";
+                    job.FinishedAt = DateTimeOffset.UtcNow;
+                    await db.SaveChangesAsync(stoppingToken);
+                    lastError = null;
+                    break;
                 }
-                catch
+                catch (Exception ex) when (ex is EndpointNotFoundException or TimeoutException or CommunicationException)
                 {
-                    ((ICommunicationObject)client).Abort();
+                    lastError = ex;
+
+                    if (attempt < attempts)
+                    {
+                        var delay = ComputeBackoffDelay(attempt, _workerOptions.Value.RetryBaseDelayMs);
+                        await Task.Delay(delay, stoppingToken);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    lastError = ex;
+                    break;
                 }
             }
-            catch (Exception ex)
+
+            if (lastError != null)
             {
-                _logger.LogError(ex, "Failed to dispatch image job {JobId} to worker.", job.JobId);
-                _store.MarkFailed(job.JobId, "Worker is not reachable. Start WorkerHost and try again.");
+                _logger.LogError(lastError, "Failed to dispatch job {JobId} to worker.", jobId);
+                job.Status = JobStatus.Failed;
+                job.Error = "Worker is not reachable or timed out. Start WorkerHost and try again.";
+                job.FinishedAt = DateTimeOffset.UtcNow;
+                await db.SaveChangesAsync(stoppingToken);
             }
+        }
+    }
+
+    private static TimeSpan ComputeBackoffDelay(int attempt, int baseDelayMs)
+    {
+        var baseMs = Math.Max(50, baseDelayMs);
+        var ms = baseMs * Math.Pow(2, Math.Max(0, attempt - 1));
+        ms = Math.Min(ms, 5000); // cap
+        return TimeSpan.FromMilliseconds(ms);
+    }
+
+    private static List<ImageOperationRequest> ParseOperations(string operationsJson)
+    {
+        try
+        {
+            var ops = JsonSerializer.Deserialize<List<JobOperationDto>>(operationsJson) ?? new List<JobOperationDto>();
+            var list = new List<ImageOperationRequest>(ops.Count);
+            foreach (var op in ops)
+            {
+                list.Add(new ImageOperationRequest
+                {
+                    Type = op.Type,
+                    Width = op.Width,
+                    Height = op.Height,
+                    Quality = op.Quality
+                });
+            }
+            return list;
+        }
+        catch
+        {
+            return new List<ImageOperationRequest>();
         }
     }
 }

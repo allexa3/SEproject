@@ -7,6 +7,8 @@ using HelloWorldMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using HelloWorldMVC.Services;
 using System.Threading.Channels;
+using HelloWorldMVC.Services.Options;
+using Microsoft.Extensions.Options;
 
 namespace HelloWorldMVC
 {
@@ -26,9 +28,11 @@ namespace HelloWorldMVC
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlite("Data Source=HelloWorld.db"));
 
-            // In-memory "queue + store" for demo purposes (later replaced by Azure Queue/ServiceBus + DB).
-            services.AddSingleton<InMemoryJobStore>();
-            services.AddSingleton(Channel.CreateUnbounded<ImageJob>());
+            services.Configure<StorageOptions>(Configuration.GetSection("Storage"));
+            services.Configure<WorkerOptions>(Configuration.GetSection("Worker"));
+
+            // In-memory queue for demo purposes (later replaced by Azure Queue/ServiceBus).
+            services.AddSingleton(Channel.CreateUnbounded<System.Guid>());
             services.AddHostedService<ImageJobDispatcher>();
         }
 

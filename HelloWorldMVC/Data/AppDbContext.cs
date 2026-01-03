@@ -10,5 +10,6 @@ namespace HelloWorldMVC.Data
         }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Job> Jobs { get; set; }
     }
 }

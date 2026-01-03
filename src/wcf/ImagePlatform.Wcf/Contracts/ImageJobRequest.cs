@@ -19,7 +19,7 @@ public sealed class ImageJobRequest
     public string? DestinationUri { get; set; }
 
     [DataMember(Order = 4)]
-    public List<ImageOperation> Operations { get; set; } = new();
+    public List<ImageOperationRequest> Operations { get; set; } = new();
 }
 
 

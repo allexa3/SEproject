@@ -35,8 +35,8 @@ public sealed class WorkerWcfService : IWorkerWcfService
             if (string.IsNullOrWhiteSpace(request.DestinationUri))
                 throw new ArgumentException("DestinationUri is required.", nameof(request));
 
-            var sourcePath = request.SourceUri;
-            var destinationPath = request.DestinationUri;
+            var sourcePath = ResolveToLocalPath(request.SourceUri);
+            var destinationPath = ResolveToLocalPath(request.DestinationUri);
 
             if (!File.Exists(sourcePath))
                 throw new FileNotFoundException("Source image not found.", sourcePath);
@@ -48,7 +48,18 @@ public sealed class WorkerWcfService : IWorkerWcfService
             var bytes = await File.ReadAllBytesAsync(sourcePath);
 
             // Minimal "processing": pass through the TPL pipeline (currently simulated delays)
-            var transforms = request.Operations.Select(op => new ImageTransform(op.ToString())).ToList();
+            var transforms = request.Operations.Select(op =>
+                new ImageTransform(
+                    Name: op.Type.ToString(),
+                    Parameters: new System.Collections.Generic.Dictionary<string, string?>
+                    {
+                        ["width"] = op.Width?.ToString(),
+                        ["height"] = op.Height?.ToString(),
+                        ["quality"] = op.Quality?.ToString()
+                    }
+                    .Where(kv => kv.Value != null)
+                    .ToDictionary(kv => kv.Key, kv => kv.Value!)))
+                .ToList();
             var processed = await _pipeline.ProcessImageAsync(bytes, transforms);
 
             await File.WriteAllBytesAsync(destinationPath, processed);
@@ -75,6 +86,19 @@ public sealed class WorkerWcfService : IWorkerWcfService
             _results[jobId] = failed;
             return failed;
         }
+    }
+
+    private static string ResolveToLocalPath(string uriOrPath)
+    {
+        if (Uri.TryCreate(uriOrPath, UriKind.Absolute, out var uri))
+        {
+            if (uri.Scheme.Equals("file", StringComparison.OrdinalIgnoreCase))
+                return uri.LocalPath;
+
+            throw new InvalidOperationException($"Unsupported URI scheme '{uri.Scheme}'. Expected file:// or a local path.");
+        }
+
+        return uriOrPath;
     }
 
     public Task<ImageJobResult> GetStatusAsync(Guid jobId)

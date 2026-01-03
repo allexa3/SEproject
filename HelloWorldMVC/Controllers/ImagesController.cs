@@ -1,28 +1,33 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Threading.Channels;
+using HelloWorldMVC.Data;
 using HelloWorldMVC.Models;
-using HelloWorldMVC.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Channels;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using HelloWorldMVC.Services.Options;
 
 namespace HelloWorldMVC.Controllers
 {
     public class ImagesController : Controller
     {
         private static readonly string[] AllowedExtensions = [".png", ".jpg", ".jpeg", ".gif", ".webp"];
-        private const long MaxUploadBytes = 10 * 1024 * 1024; // 10 MB (basic guardrail)
 
         private readonly IWebHostEnvironment _env;
-        private readonly InMemoryJobStore _store;
-        private readonly Channel<ImageJob> _queue;
+        private readonly AppDbContext _db;
+        private readonly Channel<Guid> _queue;
+        private readonly IOptions<StorageOptions> _storageOptions;
 
-        public ImagesController(IWebHostEnvironment env, InMemoryJobStore store, Channel<ImageJob> queue)
+        public ImagesController(IWebHostEnvironment env, AppDbContext db, Channel<Guid> queue, IOptions<StorageOptions> storageOptions)
         {
             _env = env;
-            _store = store;
             _queue = queue;
+            _db = db;
+            _storageOptions = storageOptions;
         }
 
         [HttpGet]
@@ -52,7 +57,7 @@ namespace HelloWorldMVC.Controllers
                 return View(model);
             }
 
-            if (model.File.Length > MaxUploadBytes)
+            if (model.File.Length > _storageOptions.Value.MaxUploadBytes)
             {
                 ModelState.AddModelError(nameof(ImageUploadViewModel.File), "File is too large (max 10MB).");
                 return View(model);
@@ -66,10 +71,11 @@ namespace HelloWorldMVC.Controllers
                 return View(model);
             }
 
-            var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
+            var uploadsDir = Path.Combine(_env.WebRootPath, _storageOptions.Value.UploadsSubdir);
             Directory.CreateDirectory(uploadsDir);
 
-            var jobId = Guid.NewGuid().ToString("N");
+            var jobGuid = Guid.NewGuid();
+            var jobId = jobGuid.ToString("N");
             var safeFileName = $"{jobId}{ext}";
             var diskPath = Path.Combine(uploadsDir, safeFileName);
 
@@ -78,24 +84,28 @@ namespace HelloWorldMVC.Controllers
                 await model.File.CopyToAsync(fs);
             }
 
-            var originalUrl = Url.Content($"~/uploads/{safeFileName}");
+            var originalUrl = Url.Content($"~/{_storageOptions.Value.UploadsSubdir}/{safeFileName}");
 
             // Destination is inside this MVC app's wwwroot so the result can be served to the browser.
-            var processedDir = Path.Combine(_env.WebRootPath, "processed");
+            var processedDir = Path.Combine(_env.WebRootPath, _storageOptions.Value.ProcessedSubdir);
             Directory.CreateDirectory(processedDir);
             var processedFileName = $"{jobId}{ext}";
             var destinationPath = Path.Combine(processedDir, processedFileName);
-            var expectedProcessedUrl = Url.Content($"~/processed/{processedFileName}");
+            var expectedProcessedUrl = Url.Content($"~/{_storageOptions.Value.ProcessedSubdir}/{processedFileName}");
 
-            // Enqueue a "distributed" job (local demo: coordinator -> worker over WCF).
-            _store.CreateQueued(jobId, expectedProcessedUrl);
-            _queue.Writer.TryWrite(new ImageJob
+            // Store a DB job record and enqueue for dispatch (local demo: coordinator -> worker over WCF).
+            var job = new Job
             {
-                JobId = jobId,
-                SourcePath = diskPath,
-                DestinationPath = destinationPath,
-                OutputUrl = expectedProcessedUrl
-            });
+                JobId = jobGuid,
+                Status = JobStatus.Queued,
+                SourceUri = new Uri(diskPath).AbsoluteUri,
+                DestinationUri = new Uri(destinationPath).AbsoluteUri,
+                OutputUrl = expectedProcessedUrl,
+                OperationsJson = "[]"
+            };
+            _db.Jobs.Add(job);
+            await _db.SaveChangesAsync();
+            _queue.Writer.TryWrite(jobGuid);
 
             return View("Result", new ImageUploadResultViewModel
             {
@@ -112,10 +122,22 @@ namespace HelloWorldMVC.Controllers
             if (string.IsNullOrWhiteSpace(jobId))
                 return BadRequest(new { error = "jobId is required" });
 
-            if (_store.TryGet(jobId, out var dto))
-                return Json(dto);
+            if (Guid.TryParse(jobId, out var guid))
+            {
+                var job = _db.Jobs.AsNoTracking().FirstOrDefault(j => j.JobId == guid);
+                if (job != null)
+                {
+                    return Json(new
+                    {
+                        jobId = job.JobId.ToString("N"),
+                        status = job.Status.ToString(),
+                        outputUrl = job.OutputUrl,
+                        errorMessage = job.Error
+                    });
+                }
+            }
 
-            return Json(new ImageJobStatusDto { JobId = jobId, Status = "Unknown" });
+            return Json(new { jobId, status = "Unknown" });
         }
     }
 }
