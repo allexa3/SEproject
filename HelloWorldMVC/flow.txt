@@ -1,0 +1,9 @@
+Database (HelloWorld.db)
+    ↓
+Message object { Id=1, Text="Hello World!" }
+    ↓
+Controller extracts: message.Text → "Hello World!"
+    ↓
+View receives: string "Hello World!"
+    ↓
+Browser displays: <h1>Hello World!</h1>

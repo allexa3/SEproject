@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--
+      Use classic System.ServiceModel contract attributes for maximum interoperability:
+      - CoreWCF (server) supports these contracts
+      - WCF client packages (ChannelFactory) require them
+    -->
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.3" />
+  </ItemGroup>
+
+</Project>

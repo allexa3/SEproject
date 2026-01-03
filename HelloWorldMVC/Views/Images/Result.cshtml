@@ -1,0 +1,150 @@
+@model HelloWorldMVC.Models.ImageUploadResultViewModel
+
+@{
+    ViewData["Title"] = "Processing Result (Placeholder)";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <div>
+                <h1 class="h3 mb-1">Result</h1>
+                <p class="text-muted mb-0">
+                    Upload succeeded. We queued a job and will poll the coordinator for status.
+                </p>
+            </div>
+            <div class="text-end">
+                <div class="small text-muted">Job ID</div>
+                <div class="font-monospace">@Model.JobId</div>
+                <div class="mt-1">
+                    <span id="jobStatusBadge" class="badge bg-secondary">Queued</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white">
+                <strong>Original upload</strong>
+            </div>
+            <div class="card-body">
+                @if (!string.IsNullOrWhiteSpace(Model.OriginalImageUrl))
+                {
+                    <img src="@Model.OriginalImageUrl" class="img-fluid rounded border" alt="Original uploaded image" />
+                    <div class="mt-2 small text-muted">Saved locally under <span class="font-monospace">wwwroot/uploads/</span></div>
+                }
+                else
+                {
+                    <div class="alert alert-warning mb-0">No original image available to preview.</div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 mb-3">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <strong>Processed output</strong>
+                <span class="badge bg-secondary" id="processedBadge">pending</span>
+            </div>
+            <div class="card-body">
+                <div id="processingInfo" class="alert alert-info">
+                    Worker processing happens in a separate process (CoreWCF). Start <span class="font-monospace">ImagePlatform.WorkerHost</span> to see it complete.
+                </div>
+
+                <div id="processingSpinner" class="p-4 border rounded bg-light text-center">
+                    <div class="spinner-border text-secondary" role="status" aria-hidden="true"></div>
+                    <div class="mt-2 text-muted">Waiting for distributed processing…</div>
+                </div>
+
+                <div id="processedContainer" class="mt-3 d-none">
+                    <img id="processedImg" src="" class="img-fluid rounded border" alt="Processed image" />
+                    <div class="mt-2 small text-muted">
+                        Output served from <span class="font-monospace">wwwroot/processed/</span> (demo stand-in for Blob Storage).
+                    </div>
+                </div>
+
+                <div id="errorContainer" class="alert alert-danger mt-3 d-none"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="d-flex gap-2">
+            <a asp-action="Upload" class="btn btn-primary">Upload another</a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Home</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const jobId = "@(Model.JobId ?? "")";
+            const expectedUrl = "@(Model.ExpectedProcessedImageUrl ?? "")";
+            const statusUrl = "@Url.Action("Status", "Images")" + "?jobId=" + encodeURIComponent(jobId);
+
+            const badge = document.getElementById("jobStatusBadge");
+            const processedBadge = document.getElementById("processedBadge");
+            const spinner = document.getElementById("processingSpinner");
+            const processedContainer = document.getElementById("processedContainer");
+            const processedImg = document.getElementById("processedImg");
+            const errorContainer = document.getElementById("errorContainer");
+
+            function setBadge(status) {
+                badge.textContent = status;
+                badge.className = "badge " + (
+                    status === "Completed" ? "bg-success" :
+                    status === "Processing" ? "bg-primary" :
+                    status === "Failed" ? "bg-danger" :
+                    status === "Queued" ? "bg-secondary" :
+                    "bg-secondary"
+                );
+            }
+
+            async function tick() {
+                try {
+                    const res = await fetch(statusUrl, { cache: "no-store" });
+                    const data = await res.json();
+
+                    const status = data.status || data.Status || "Unknown";
+                    setBadge(status);
+
+                    if (status === "Completed") {
+                        processedBadge.textContent = "completed";
+                        processedBadge.className = "badge bg-success";
+                        spinner.classList.add("d-none");
+                        errorContainer.classList.add("d-none");
+                        processedContainer.classList.remove("d-none");
+
+                        // Bust cache to show the newest file.
+                        const outUrl = (data.outputUrl || data.OutputUrl || expectedUrl) + "?v=" + Date.now();
+                        processedImg.src = outUrl;
+                        return;
+                    }
+
+                    if (status === "Failed") {
+                        processedBadge.textContent = "failed";
+                        processedBadge.className = "badge bg-danger";
+                        spinner.classList.add("d-none");
+                        processedContainer.classList.add("d-none");
+                        errorContainer.classList.remove("d-none");
+                        errorContainer.textContent = data.errorMessage || data.ErrorMessage || "Job failed.";
+                        return;
+                    }
+
+                    processedBadge.textContent = status.toLowerCase();
+                } catch (e) {
+                    // ignore transient errors; keep polling
+                }
+
+                setTimeout(tick, 1000);
+            }
+
+            if (jobId) tick();
+        })();
+    </script>
+}
+
+

@@ -1,0 +1,22 @@
+# .NET build outputs
+**/bin/
+**/obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Local DB / artifacts
+*.db
+
+# Rider / JetBrains
+.idea/
+
+
