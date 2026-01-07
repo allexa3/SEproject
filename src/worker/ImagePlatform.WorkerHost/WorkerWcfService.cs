@@ -48,19 +48,41 @@ public sealed class WorkerWcfService : IWorkerWcfService
             var bytes = await File.ReadAllBytesAsync(sourcePath);
 
             // Minimal "processing": pass through the TPL pipeline (currently simulated delays)
-            var transforms = request.Operations.Select(op =>
-                new ImageTransform(
-                    Name: op.Type.ToString(),
-                    Parameters: new System.Collections.Generic.Dictionary<string, string?>
-                    {
-                        ["width"] = op.Width?.ToString(),
-                        ["height"] = op.Height?.ToString(),
-                        ["quality"] = op.Quality?.ToString()
-                    }
-                    .Where(kv => kv.Value != null)
-                    .ToDictionary(kv => kv.Key, kv => kv.Value!)))
-                .ToList();
-            var processed = await _pipeline.ProcessImageAsync(bytes, transforms);
+           var transforms = request.Operations.Select(op =>
+    new ImageTransform(
+        Name: op.Type.ToString(),
+        Parameters: new System.Collections.Generic.Dictionary<string, string?>
+        {
+            ["width"] = op.Width?.ToString(),
+            ["height"] = op.Height?.ToString(),
+            ["quality"] = op.Quality?.ToString()
+        }
+        .Where(kv => kv.Value != null)
+        .ToDictionary(kv => kv.Key, kv => kv.Value!)))
+    .ToList();
+
+// FALLBACK: dacă UI nu trimite operații, aplicăm unele default
+if (transforms.Count == 0)
+{
+    transforms.Add(new ImageTransform(
+        "resize",
+        new System.Collections.Generic.Dictionary<string, string>
+        {
+            ["width"] = "300"
+        }));
+
+    transforms.Add(new ImageTransform("grayscale"));
+
+    transforms.Add(new ImageTransform(
+        "compress",
+        new System.Collections.Generic.Dictionary<string, string>
+        {
+            ["quality"] = "70"
+        }));
+}
+
+var processed = await _pipeline.ProcessImageAsync(bytes, transforms);
+
 
             await File.WriteAllBytesAsync(destinationPath, processed);
 
