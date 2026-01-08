@@ -1,15 +1,8 @@
-using System.Threading;
-using System.Threading.Tasks;
-using ImagePlatform.Rpc.Models;
-
 namespace ImagePlatform.Rpc.Abstractions;
 
 /// <summary>
-/// Server-side abstraction implemented by a worker node.
+/// Server-side marker for worker nodes to identify as valid RPC endpoints.
 /// </summary>
 public interface IWorkerRpcServer
 {
-    Task<WorkerProcessResponse> ProcessAsync(WorkerProcessRequest request, CancellationToken cancellationToken = default);
 }
-
-

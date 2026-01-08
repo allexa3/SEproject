@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\wcf\ImagePlatform.Wcf\ImagePlatform.Wcf.csproj" />
+  </ItemGroup>
+
 </Project>

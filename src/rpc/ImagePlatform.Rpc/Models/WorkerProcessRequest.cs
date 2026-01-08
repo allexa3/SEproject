@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace ImagePlatform.Rpc.Models;
 
-public sealed record WorkerProcessRequest(
-    Guid JobId,
-    string SourceUri,
-    string DestinationUri,
-    IReadOnlyList<ImageTransform> Transforms
-);
-
-
+public sealed class WorkerProcessRequest
+{
+    public Guid JobId { get; set; }
+    public string? SourceUri { get; set; }
+    public string? DestinationUri { get; set; }
+    public List<ImageTransform> Operations { get; set; } = new();
+}

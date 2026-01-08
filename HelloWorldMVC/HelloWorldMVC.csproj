@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,8 +13,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.ServiceModel.Http" Version="4.10.3" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.3" />
+
+    <PackageReference Include="System.ServiceModel.Http" Version="8.1.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.0" />
   </ItemGroup>
 
   <ItemGroup>
