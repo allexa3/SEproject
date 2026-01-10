@@ -7,6 +7,11 @@ using HelloWorldMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Azure.Identity;
+using Azure.Extensions.AspNetCore.Configuration.Secrets;
+using Microsoft.Extensions.Configuration;
+
 
 namespace HelloWorldMVC
 {
@@ -38,15 +43,32 @@ namespace HelloWorldMVC
                     logger.LogError(ex, "An error occurred while migrating or seeding the database.");
                 }
             }
+            var configuration = host.Services.GetRequiredService<IConfiguration>();
+    var apiKey = configuration["ApiKeys:ImageProcessing"];
+    Console.WriteLine($"API Key from Key Vault = {apiKey}");
 
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
+       public static IHostBuilder CreateHostBuilder(string[] args) =>
+    Host.CreateDefaultBuilder(args)
+        .ConfigureAppConfiguration((context, config) =>
+        {
+            var builtConfig = config.Build();
+            var keyVaultUri = builtConfig["KeyVault:VaultUri"];
+
+            if (!string.IsNullOrWhiteSpace(keyVaultUri))
+            {
+                config.AddAzureKeyVault(
+                    new Uri(keyVaultUri),
+                    new DefaultAzureCredential()
+                );
+            }
+        })
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder.UseStartup<Startup>();
+        });
+
     }
 }

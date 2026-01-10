@@ -1,48 +1,46 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
+    "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
+    "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "projectUniqueName": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
         "projectName": "HelloWorldMVC",
-        "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
-        "packagesPath": "C:\\Users\\Catalin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\HelloWorldMVC\\obj\\",
+        "projectPath": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Catalin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
-                "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj"
+              "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
+                "projectPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj"
               },
-              "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
-                "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj"
+              "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
+                "projectPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj"
               },
-              "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
-                "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj"
+              "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
+                "projectPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj"
               },
-              "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
-                "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj"
+              "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
+                "projectPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj"
               }
             }
           }
@@ -63,6 +61,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.0, )"
@@ -105,32 +107,30 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
+    "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
+        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
         "projectName": "ImagePlatform.Rpc",
-        "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
-        "packagesPath": "C:\\Users\\Catalin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\obj\\",
+        "projectPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Catalin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -170,32 +170,30 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
+    "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
+        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
         "projectName": "ImagePlatform.Security",
-        "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
-        "packagesPath": "C:\\Users\\Catalin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\security\\ImagePlatform.Security\\obj\\",
+        "projectPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Catalin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -245,32 +243,30 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
+    "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
+        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
         "projectName": "ImagePlatform.Tpl",
-        "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
-        "packagesPath": "C:\\Users\\Catalin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\obj\\",
+        "projectPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Catalin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -310,32 +306,30 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
+    "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
+        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
         "projectName": "ImagePlatform.Wcf",
-        "projectPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
-        "packagesPath": "C:\\Users\\Catalin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Catalin\\Desktop\\0Facultate\\AI\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\obj\\",
+        "projectPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
+        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
+        "outputPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Catalin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -381,7 +375,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
