@@ -1,12 +1,8 @@
-using System;
-
 namespace ImagePlatform.Rpc.Models;
 
-public sealed record WorkerProcessResponse(
-    Guid JobId,
-    bool Success,
-    string? OutputUri = null,
-    string? ErrorMessage = null
-);
-
-
+public sealed class WorkerProcessResponse
+{
+    public bool Success { get; set; }
+    public string? OutputUri { get; set; }
+    public string? ErrorMessage { get; set; }
+}
