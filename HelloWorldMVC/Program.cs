@@ -7,7 +7,6 @@ using HelloWorldMVC.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using Microsoft.Extensions.Configuration;
 using Azure.Identity;
 using Azure.Extensions.AspNetCore.Configuration.Secrets;
 using Microsoft.Extensions.Configuration;
@@ -43,10 +42,6 @@ namespace HelloWorldMVC
                     logger.LogError(ex, "An error occurred while migrating or seeding the database.");
                 }
             }
-            var configuration = host.Services.GetRequiredService<IConfiguration>();
-    var apiKey = configuration["ApiKeys:ImageProcessing"];
-    Console.WriteLine($"API Key from Key Vault = {apiKey}");
-
             host.Run();
         }
 
@@ -56,8 +51,10 @@ namespace HelloWorldMVC
         {
             var builtConfig = config.Build();
             var keyVaultUri = builtConfig["KeyVault:VaultUri"];
+            var keyVaultEnabled = builtConfig.GetValue("KeyVault:Enabled", defaultValue: false);
 
-            if (!string.IsNullOrWhiteSpace(keyVaultUri))
+            // Key Vault should be explicitly enabled (so local dev doesn't require Azure credentials).
+            if (keyVaultEnabled && !string.IsNullOrWhiteSpace(keyVaultUri))
             {
                 config.AddAzureKeyVault(
                     new Uri(keyVaultUri),

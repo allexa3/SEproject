@@ -9,7 +9,7 @@ $ErrorActionPreference = "SilentlyContinue"
 $pids = @()
 
 try {
-    $pids = Get-NetTCPConnection -LocalPort $Port -State Listen |
+    $pids = Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue |
         Select-Object -ExpandProperty OwningProcess -Unique
 } catch {
     # Fallback if Get-NetTCPConnection isn't available
