@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {}
   },
   "projects": {
-    "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "projectUniqueName": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
         "projectName": "HelloWorldMVC",
-        "projectPath": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
-        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-        "outputPath": "D:\\SE_final_project\\SEproject\\HelloWorldMVC\\obj\\",
+        "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\HelloWorldMVC\\HelloWorldMVC.csproj",
+        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\HelloWorldMVC\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -30,17 +30,17 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
-                "projectPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj"
+              "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
+                "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj"
               },
-              "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
-                "projectPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj"
+              "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
+                "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj"
               },
-              "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
-                "projectPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj"
+              "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
+                "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj"
               },
-              "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
-                "projectPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj"
+              "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
+                "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj"
               }
             }
           }
@@ -55,7 +55,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -99,6 +99,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -107,24 +125,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
+        "projectUniqueName": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
         "projectName": "ImagePlatform.Rpc",
-        "projectPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
-        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-        "outputPath": "D:\\SE_final_project\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\obj\\",
+        "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\ImagePlatform.Rpc.csproj",
+        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\rpc\\ImagePlatform.Rpc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -149,7 +167,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -165,29 +183,43 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
+        "projectUniqueName": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
         "projectName": "ImagePlatform.Security",
-        "projectPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
-        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-        "outputPath": "D:\\SE_final_project\\SEproject\\src\\security\\ImagePlatform.Security\\obj\\",
+        "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\ImagePlatform.Security.csproj",
+        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\security\\ImagePlatform.Security\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -212,7 +244,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -238,29 +270,43 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
+        "projectUniqueName": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
         "projectName": "ImagePlatform.Tpl",
-        "projectPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
-        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-        "outputPath": "D:\\SE_final_project\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\obj\\",
+        "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\ImagePlatform.Tpl.csproj",
+        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\tpl\\ImagePlatform.Tpl\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -285,11 +331,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "SixLabors.ImageSharp": {
+              "target": "Package",
+              "version": "[3.1.12, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -301,29 +353,43 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
+    "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
+        "projectUniqueName": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
         "projectName": "ImagePlatform.Wcf",
-        "projectPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
-        "packagesPath": "C:\\Users\\Mara\\.nuget\\packages\\",
-        "outputPath": "D:\\SE_final_project\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\obj\\",
+        "projectPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\ImagePlatform.Wcf.csproj",
+        "packagesPath": "C:\\Users\\costi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\costi\\Desktop\\New folder\\SEproject\\src\\wcf\\ImagePlatform.Wcf\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Mara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\costi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
         ],
         "originalTargetFrameworks": [
@@ -348,7 +414,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -370,12 +436,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[9.0.11, 9.0.11]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
